@@ -1,0 +1,33 @@
+ pipeline {
+	agent any
+
+	stages {
+		stage ('Build') {
+			steps {
+				sh 'pip install -r requirements.txt'
+			}
+		}
+
+		stage ('Test'){
+			steps {
+				sh "python3 DQchecks.py"
+			}
+		}
+
+		stage('Create, copy in new branch') {
+             steps {
+                sh 'git checkout release'
+                sh 'git add .'
+                sh 'git config --global user.email "Halina_Darashkova@epam.com"'
+                sh 'git config --global user.name "gdoroshkova"'
+                sh 'git commit -m "Pushing to release branch"'
+             }
+        }
+
+        stage('Push to release') {
+            steps {
+                sh 'git push origin release'
+            }
+        }
+    }
+}
