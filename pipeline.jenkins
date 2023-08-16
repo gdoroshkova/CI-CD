@@ -20,7 +20,7 @@
                 sh 'git add .'
                 sh 'git config --global user.email "Halina_Darashkova@epam.com"'
                 sh 'git config --global user.name "gdoroshkova"'
-                sh 'git commit -m "Pushing to release branch"'
+                sh 'git commit -m "Push to release branch"'
              }
         }
 
