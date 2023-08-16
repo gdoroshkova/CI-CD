@@ -70,11 +70,11 @@ def check_date_correctness(table_name, date_column):
     return result
 
 
-def check_column_for_null_values(table_name, column_name):
-    parameters_list = get_db_settings('db_settings.txt')
-    cursor = db_connection(parameters_list)
-    cursor.execute(f'SELECT {column_name} FROM {table_name} WHERE {column_name} IS NULL')
-    result = cursor.fetchall()
-    cursor.close()
-    return result
+# def check_column_for_null_values(table_name, column_name):
+#     parameters_list = get_db_settings('db_settings.txt')
+#     cursor = db_connection(parameters_list)
+#     cursor.execute(f'SELECT {column_name} FROM {table_name} WHERE {column_name} IS NULL')
+#     result = cursor.fetchall()
+#     cursor.close()
+#     return result
 
