@@ -23,7 +23,7 @@ pipeline {
     stage('Push to pre-prod') {
       steps {
         script {
-            sshagent (credentials: ['ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC105eulEmgZdtNGPUwDT2CF33EN7o5LRl9q+Xi62VhuXitF0x8lxsgppXph31MVveBu2BU+t23Ok2SU5X+09/3O0iziTlxUZMGzOD4oYSFUca4Kop7mEZxqCGQDHdUU0TBQsFFG2IctvJ8hY1RXJqqLJG5KDVZwvcR3AysK/NrY+hliqpeQ5lg9kPjksYYHGQtcHnO+6Yviq/VCt4GW2qFhyBfhxB0Y1Eh9CgMcn4NNOEWJVgo/XUJqxqdxqsk+V/VaEfwx1wgl67bWdu8jKz8WMl8g697mys7VGS9S+llBX4TI0w0sWLx51yLP+rHt7SeKZLx6mnSBnowaRnEz8qWZQz1hIiZ/+zoex29tOSuHEHZS7hdXqTu95IXQDXqu6YA0yMdqGueUPdLq7b+mY5mj3KVQfRwzY0Xp3CFEBxZsGjwnkzy3JlrY0dhS/Wna4u0p6x0jt3emxc+HqudIscq6zxppv0JmSmd27TW1+fzQbDK5rhqb+4uMKUfTPjd+Mc= epam\halina_darashkova@EPPLWROW03C4'])
+            sshagent (credentials: ['Personal Laptop SSH Key'])
             {
                 sh 'git push origin release'
             }
