@@ -20,7 +20,7 @@
                 sh 'git checkout release'
                 sh 'git config --global user.email "Halina_Darashkova@epam.com"'
                 sh 'git config --global user.name "gdoroshkova"'
-                sh 'git merge develop'
+                sh 'git merge origin develop'
              }
         }
 
