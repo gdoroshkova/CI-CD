@@ -16,6 +16,7 @@
 
 		stage('Create, copy in new branch') {
              steps {
+                sh 'git pull origin develop'
                 sh 'git checkout release'
                 sh 'git add .'
                 sh 'git config --global user.email "Halina_Darashkova@epam.com"'
