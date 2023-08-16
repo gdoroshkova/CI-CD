@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+        GIT_SSH_COMMAND = 'ssh -i /var/jenkins_home/.ssh/id_rsa'
+  }
   stages {
     stage('Install Dependencies and Run Tests') {
       steps {
@@ -20,15 +23,19 @@ pipeline {
         sh 'git commit -m "Pushing to release"'
       }
     }
-    stage('Push to pre-prod') {
-      steps {
-        script {
-            sshagent (credentials: ['Personal Laptop SSH Key'])
-            {
-                sh 'git push origin release'
+    stage('Push Changes') {
+            steps {
+                script {
+                    withCredentials([sshUserPrivateKey(credentialsId: '75d8e1e6-6bdb-46c2-b2e2-5d7f27199756', keyFileVariable: 'GIT_SSH_KEY')])
+                    {
+                        sh '''
+                            cp $GIT_SSH_KEY /var/jenkins_home/.ssh/id_rsa
+                            chmod 600 /var/jenkins_home/.ssh/id_rsa
+                            git push origin release
+                        '''
+                    }
+                }
             }
-        }
-      }
     }
   }
 }
