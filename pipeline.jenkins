@@ -22,7 +22,7 @@ pipeline {
     }
     stage('Push to pre-prod') {
       steps {
-        sh 'git push origin pre-prod'
+        sh 'git push origin release'
       }
     }
   }
