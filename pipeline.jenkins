@@ -25,7 +25,12 @@
 
         stage('Push to release') {
             steps {
-                sh 'git push origin release'
+                 script {
+                    sshagent (credentials: ['6816354b-f377-4a3d-9593-fe12422d941a']){
+                    sh 'git remote set-url origin git@github.com:gdoroshkova/CI-CD.git'
+                    sh 'git push origin release'
+                    }
+                 }
             }
         }
     }
