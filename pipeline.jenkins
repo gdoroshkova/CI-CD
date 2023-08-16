@@ -12,7 +12,6 @@ pipeline {
       steps {
         sh 'git branch -D release'
         sh 'git checkout -b release'
-        sh 'touch somefile'
         sh 'git add .'
         sh 'git status'
         sh 'git config --global user.name "gdoroshkova"'
