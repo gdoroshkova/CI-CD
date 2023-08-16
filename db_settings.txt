@@ -1,0 +1,4 @@
+server_name=EPPLWROW03C4\SQLEXPRESS
+database_name=TRN
+UID=MyLogin
+password=123
