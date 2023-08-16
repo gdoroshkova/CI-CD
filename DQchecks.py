@@ -1,4 +1,4 @@
-import pyodbc
+import pymssql
 
 
 def get_db_settings(file_name):
