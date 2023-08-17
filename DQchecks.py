@@ -17,62 +17,72 @@ def db_connection(parameters_list):
     database_name = parameters_list[1]
     login = parameters_list[2]
     password = parameters_list[3]
-    with pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};'+f'SERVER={server_name};DATABASE={database_name};UID={login};PWD={password};Encrypt=no', autocommit=True) as connection:
-        cursor = connection.cursor()
-        return cursor
+    conn = pymssql.connect(server_name, login, password,  database_name)
+    return conn
 
 
 def check_duplicates(table_name, column_name):
     parameters_list = get_db_settings('db_settings.txt')
-    cursor = db_connection(parameters_list)
+    conn = db_connection(parameters_list)
+    cursor = conn.cursor()
     cursor.execute(f'SELECT COUNT(*) FROM {table_name} GROUP BY {column_name} HAVING COUNT(*) > 1')
     result = cursor.fetchall()
     cursor.close()
+    conn.close()
     return result
 
 
 def check_amount_of_rows(table_name):
     parameters_list = get_db_settings('db_settings.txt')
-    cursor = db_connection(parameters_list)
+    conn = db_connection(parameters_list)
+    cursor = conn.cursor()
     cursor.execute(f'SELECT COUNT(*) FROM {table_name}')
     result = cursor.fetchall()
     result = result[0][0]
     cursor.close()
+    conn.close()
     return result
 
 
 def check_avg_for_column(table_name, column_name):
     parameters_list = get_db_settings('db_settings.txt')
-    cursor = db_connection(parameters_list)
+    conn = db_connection(parameters_list)
+    cursor = conn.cursor()
     cursor.execute(f'SELECT AVG({column_name}) FROM {table_name}')
     result = cursor.fetchall()
     result = result[0][0]
     cursor.close()
+    conn.close()
     return result
 
 
 def check_max_for_column(table_name, column_name):
     parameters_list = get_db_settings('db_settings.txt')
-    cursor = db_connection(parameters_list)
+    conn = db_connection(parameters_list)
+    cursor = conn.cursor()
     cursor.execute(f'SELECT MAX({column_name}) FROM {table_name}')
     result = cursor.fetchall()
     result = result[0][0]
     cursor.close()
+    conn.close()
     return result
 
 
 def check_date_correctness(table_name, date_column):
     parameters_list = get_db_settings('db_settings.txt')
-    cursor = db_connection(parameters_list)
+    conn = db_connection(parameters_list)
+    cursor = conn.cursor()
     cursor.execute(f'SELECT {date_column} FROM {table_name} WHERE {date_column} IS NULL OR {date_column} > GETDATE()')
     result = cursor.fetchall()
     cursor.close()
+    conn.close()
     return result
 
 
 def check_column_for_null_values(table_name, column_name):
     parameters_list = get_db_settings('db_settings.txt')
-    cursor = db_connection(parameters_list)
+    conn = db_connection(parameters_list)
+    cursor = conn.cursor()
     cursor.execute(f'SELECT {column_name} FROM {table_name} WHERE {column_name} IS NULL')
     result = cursor.fetchall()
     cursor.close()
