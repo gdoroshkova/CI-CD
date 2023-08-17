@@ -38,4 +38,5 @@ Precondition:
 8) For running tests run terminal from project folder and use one of the following commands: 
 	- pytest
 	- pytest -v
-	- pytest test_db.py111123435
+	- pytest test_db.py
+--add some changes
