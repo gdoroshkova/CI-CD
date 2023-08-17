@@ -11,6 +11,7 @@
 		stage ('Test'){
 			steps {
 				sh "python3 DQchecks.py"
+				sh "pytest --alluredir=allure-report/"
 			}
 		}
 
