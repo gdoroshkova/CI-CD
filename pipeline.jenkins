@@ -14,7 +14,7 @@
 			}
 		}
 
-		stage('Create, copy in new branch') {
+		stage('merge in release branch') {
              steps {
                 sh 'git checkout release'
                 sh 'git config --global user.email "Halina_Darashkova@epam.com"'
@@ -26,7 +26,7 @@
         stage('Push to release') {
             steps {
                  script {
-                    sshagent (credentials: ['6816354b-f377-4a3d-9593-fe12422d941a']){
+                    sshagent (credentials: ['jenkins']){
                     sh 'git remote set-url origin git@github.com:gdoroshkova/CI-CD.git'
                     sh 'git push origin release'
                     }
@@ -35,4 +35,3 @@
         }
     }
 }
-
