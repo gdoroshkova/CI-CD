@@ -75,3 +75,4 @@ class TestLocations:
         Test is passed if the length of returned list should be equal 0."""
         result = DQchecks.check_column_for_null_values('hr.locations', 'locations.postal_code')
         assert len(result) == 0
+
